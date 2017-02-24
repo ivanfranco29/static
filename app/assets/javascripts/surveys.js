@@ -70,6 +70,32 @@
         surveyType: 'url',
         startTime: new Date("January 25, 2017").getTime(),
         endTime: new Date("February 27, 2017 23:59:59").getTime()
+      },
+      {
+        identifier: 'education_email_survey',
+        frequency: 1,
+        activeWhen: function() {
+          function breadcrumbMatches() {
+            var text = $('.govuk-breadcrumbs').text() || "";
+            return (/Education/i.test(text) || /Childcare/i.test(text) || /Schools/i.test(text));
+          }
+
+          function sectionMatches() {
+            var sectionName = $('meta[name="govuk:section"]').attr('content');
+            return (/education/i.test(sectionName) || /childcare/i.test(sectionName) || /schools/i.test(sectionName));
+          }
+
+          function organisationMatches() {
+            var orgMatchingExpr = /<D6>|<D106>|<D109>|<EA243>|<EA86>|<EA242>|<EA541>/;
+            var metaText = $('meta[name="govuk:analytics:organisations"]').attr('content') || "";
+            return orgMatchingExpr.test(metaText);
+          }
+
+          return sectionMatches() || breadcrumbMatches() || organisationMatches();
+        },
+        surveyType: 'email',
+        startTime: new Date("February 23, 2017").getTime(),
+        endTime: new Date("March 5, 2017 23:59:59").getTime()
       }
     ],
 
