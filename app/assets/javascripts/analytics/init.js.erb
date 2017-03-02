@@ -11,7 +11,8 @@
   // Configure profiles, setup custom vars, track initial pageview
   var analytics = new GOVUK.StaticAnalytics({
     universalId: 'UA-26179049-1',
-    cookieDomain: cookieDomain
+    cookieDomain: cookieDomain,
+    govukTrackerGifUrl: '<%= asset_path "/static/a.gif" %>',
   });
 
   // Make interface public for virtual pageviews and events
